@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-""" This module contains the BasicCache class that inherits from BaseCaching. """
+""" This module contains the BasicCache
+class that inherits from BaseCaching. """
 
 from base_caching import BaseCaching
 
