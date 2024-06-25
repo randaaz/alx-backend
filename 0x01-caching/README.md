@@ -2,11 +2,6 @@
 
 ## Back-end
 
-**Weight:** 1  
-**Project Start:** Jun 25, 2024 6:00 AM  
-**Project End:** Jun 27, 2024 6:00 AM  
-**Checker Release:** Jun 25, 2024 6:00 PM  
-**Auto Review:** Launched at the deadline
 
 ## Background Context
 
