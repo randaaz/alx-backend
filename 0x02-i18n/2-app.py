@@ -1,44 +1,37 @@
 #!/usr/bin/env python3
-'''
-    Flask app with Babel setup for
-    internationalization and locale selection.
-'''
-
+"""Simple Flask app with Babel setup for internationalization.
+"""
 from flask_babel import Babel
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
-app = Flask(__name__, template_folder='templates')
-babel = Babel(app)
+class Config:
+    """Configuration class for Flask-Babel.
+    """
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
-class Config(object):
-    '''
-        Configuration class for Flask-Babel.
-    '''
-    LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
-
-
+app = Flask(__name__)
 app.config.from_object(Config)
-
-
-@app.route('/', methods=['GET'], strict_slashes=False)
-def helloWorld() -> str:
-    '''
-        Route for the home page.
-    '''
-    return render_template('2-index.html')
+app.url_map.strict_slashes = False
+babel = Babel(app)
 
 
 @babel.localeselector
 def get_locale() -> str:
-    '''
-        Determine the best match for supported languages.
-    '''
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    """Determines the best matching language for localization.
+    """
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
+
+
+@app.route('/')
+def get_index() -> str:
+    """Renders the index template.
+    """
+    return render_template('2-index.html')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
