@@ -37,7 +37,8 @@ def get_user() -> Union[Dict, None]:
 
 @app.before_request
 def before_request() -> None:
-    """ Sets the global 'g.user' with user information retrieved from get_user().
+    """ Sets the global 'g.user' with user
+    information retrieved from get_user().
     """
     user = get_user()
     g.user = user
